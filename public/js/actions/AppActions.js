@@ -68,10 +68,10 @@ var AppActions = {
     }
 };
 
-['changePinMode', 'changePinValue', 'deletePin','iotForceHaltAndRestart',
- 'getState','addBundle', 'removeBundle','scheduleBundle','addListener',
- 'removeListener', 'triggerEvent'].forEach(function(x) {
-     AppActions[x] = function() {
+['changePinMode', 'changePinValue', 'changeMaxSleep', 'blink', 'deletePin',
+ 'getState', 'resetBlinks']
+    .forEach(function(x) {
+        AppActions[x] = function() {
             var args = Array.prototype.slice.call(arguments);
             args.push(function(err, data) {
                 if (err) {

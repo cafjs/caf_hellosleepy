@@ -9,13 +9,12 @@ var newAppStore = function() {
     var server = new EventEmitter2();
 
     var state = {pinMode: {}, pinInputsValue:{}, pinOutputsValue:{},
-                 bundleMethods:[], bundles:[], bundleEditor: null,
-                 triggers:[], power: {}, isClosed: false};
+                 power: {}, isClosed: false};
 
     var that = {};
 
     var lastLateBundleDismissed = -1;
-    
+
     var emitChange = function() {
         server.emit(CHANGE_EVENT);
     };
@@ -48,7 +47,7 @@ var newAppStore = function() {
         }
 
     };
-    
+
     var f = function(action) {
         switch(action.actionType) {
         case AppConstants.APP_UPDATE:

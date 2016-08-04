@@ -35,7 +35,7 @@ exports.methods = {
                                                       .fromCloud.get('out')));
         this.$.gpio.writeMany(this.fromCloud.get('out') || {});
         this.toCloud.set('in', this.$.gpio.readAll());
- 
+
         this.toCloud.set('index', this.state.index);
         this.state.index = this.state.index  + 1;
         var now = (new Date()).getTime();

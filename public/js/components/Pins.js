@@ -12,7 +12,7 @@ var renderInputs = function(pinMode, pinInputsValue) {
             .sort(function(a, b) {
                 return a - b;
             });
-    return cE(rB.ButtonGroup, null, sortedKeys.map(function(x, i) {
+    return cE(rB.ButtonGroup, {key: 972}, sortedKeys.map(function(x, i) {
         var color =  (typeof pinInputsValue[x] === 'boolean' ?
                       (pinInputsValue[x] ? 'danger' : 'primary') : 'default');
         return cE(rB.Button, {bsStyle : color, disabled: true, key: 9888*(i+1)},
@@ -28,7 +28,7 @@ var renderOutputs = function(pinMode, pinOutputsValue) {
             .sort(function(a, b) {
                 return a - b;
             });
-    return cE(rB.ButtonGroup, null, sortedKeys.map(function(x, j) {
+    return cE(rB.ButtonGroup, {key: 979}, sortedKeys.map(function(x, j) {
         var onSelect = function(ev, selectedKey) {
             if (selectedKey === 'HIGH') {
                 AppActions.changePinValue(x, true);
@@ -36,7 +36,7 @@ var renderOutputs = function(pinMode, pinOutputsValue) {
                 AppActions.changePinValue(x, false);
             } else {
                 throw new Error('Bug: Invalid Key' + selectedKey);
-            }            
+            }
         };
         var color = (typeof pinOutputsValue[x] === 'boolean' ?
                      (pinOutputsValue[x] ? 'danger': 'primary') :
@@ -54,17 +54,17 @@ var renderOutputs = function(pinMode, pinOutputsValue) {
             }, value);
         }));
     }));
-};       
+};
 
 var renderFloating =  function(pinMode) {
     var sortedKeys = Object.keys(pinMode)
             .filter(function(x) {
-                return (!pinMode[x].input && !pinMode[x].initialState); 
+                return (!pinMode[x].input && !pinMode[x].initialState);
             }).sort(function(a, b) {
                 return a - b;
             });
-    return cE(rB.ButtonGroup, null, sortedKeys.map(function(x) {
-        return cE(rB.Button, {disabled: true}, x);
+    return cE(rB.ButtonGroup, {key:91222}, sortedKeys.map(function(x, i) {
+        return cE(rB.Button, {disabled: true, key: 2455*(i+1)}, x);
     }));
 };
 

@@ -49,7 +49,11 @@
                     "env" : {
                         "resistorPullUp": "process.env.RESISTOR_PULL_UP||true",
                         "initialStateHigh": "process.env.INITIAL_STATE_HIGH||false",
-                        "margin" : "process.env.MARGIN||1"
+                        "margin" : "process.env.MARGIN||2000",
+                        "maxSleepInSec": "process.env.MAX_SLEEP_IN_SEC||100",
+                        "blinkDuration" : "process.env.BLINK_DURATION||500",
+                        "tStart" : "process.env.T_START||55000",
+                        "tReboot" : "process.env.T_REBOOT||75000"
                     }
                 }
             ]

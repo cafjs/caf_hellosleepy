@@ -4,12 +4,10 @@ var cE = React.createElement;
 var AppStore = require('../stores/AppStore');
 var AppActions = require('../actions/AppActions');
 var Pins = require('./Pins');
-var Bundles = require('./Bundles');
-var Events = require('./Events');
-var Listeners = require('./Listeners');
-var Power = require('./Power');
+var Sleep = require('./Sleep');
 var AppStatus = require('./AppStatus');
 var DisplayError = require('./DisplayError');
+var Blinks = require('./Blinks');
 
 var MyApp = {
     getInitialState: function() {
@@ -50,31 +48,25 @@ var MyApp = {
                                    )
                                 )
                   },
-                     cE(rB.Panel, {header: "Pins"},
+                     cE(rB.Panel, {
+                         header: 'Offline for at most ' +
+                             this.state.maxSleepInSec + ' seconds'
+                     },
+                        cE(Sleep, {
+                            maxSleepInSec : this.state.maxSleepInSec,
+                            sleepDelay : this.state.sleepDelay
+                        })),
+                     cE(rB.Panel, {header: 'Pins'},
                         cE(Pins, {
                             pinNumber: this.state.pinNumber,
                             pinMode: this.state.pinMode,
                             pinOutputsValue: this.state.pinOutputsValue,
                             pinInputsValue: this.state.pinInputsValue
                         })),
-                     cE(rB.Panel, {header: "Bundles"},
-                        cE(Bundles, {
-                            bundleEditor: this.state.bundleEditor,
-                            bundleId: this.state.bundleId,
-                            bundleMethods: this.state.iotMethodsMeta,
-                            bundles: this.state.bundles
-                        })),
-                     cE(rB.Panel, {header: "Events"},
-                        cE(Events, {
-                            eventLabel: this.state.eventLabel,
-                            eventDelay: this.state.eventDelay
-                        })),
-                     cE(rB.Panel, {header: "Listeners"},
-                        cE(Listeners, {
-                            listenerEditor: this.state.listenerEditor,
-                            listenerId : this.state.listenerId,
-                            listeners: this.state.listeners,
-                            bundles: this.state.bundles
+                     cE(rB.Panel, {header: 'Blinks'},
+                        cE(Blinks, {
+                            blinks: this.state.blinks,
+                            blinkDelay: this.state.blinkDelay
                         }))
                     )
                  );
