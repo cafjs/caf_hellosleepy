@@ -24,7 +24,7 @@ var Sleep = {
         }
     },
     render: function() {
-        return  cE(rB.Grid, null,
+        return  cE(rB.Grid, {fluid: true},
                   cE(rB.Row, null,
                      cE(rB.Col, {sm:4, xs:12},
                         cE(rB.Input, {

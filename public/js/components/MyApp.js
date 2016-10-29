@@ -28,7 +28,7 @@ var MyApp = {
                       error: this.state.error
                   }),
                   cE(rB.Panel, {
-                      header: cE(rB.Grid, null,
+                      header: cE(rB.Grid, {fluid: true},
                                  cE(rB.Row, null,
                                     cE(rB.Col, {sm:1, xs:1},
                                        cE(AppStatus, {
