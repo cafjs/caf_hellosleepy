@@ -1,12 +1,12 @@
 {
-  "name": "caf_iot_helloiot",
+  "name": "caf_iot_hellosleepy",
   "description": "Cloud Assistants IoT example (Device)",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "Antonio Lain <antlai@cafjs.com>",
   "dependencies": {
-      "caf_iot" : "^0.2.0",
-      "caf_rpi_nap" : "^0.2.0",
-      "caf_rpi_gpio" : "^0.2.0"
+      "caf_iot" : "^0.3.0",
+      "caf_rpi_nap" : "^0.3.0",
+      "caf_rpi_gpio" : "^0.3.0"
    },
     "scripts": {
        "start" : "node ./index.js",

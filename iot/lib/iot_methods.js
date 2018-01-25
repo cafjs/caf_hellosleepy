@@ -14,18 +14,18 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-"use strict";
+'use strict';
 var caf_iot = require('caf_iot');
 
 exports.methods = {
-    '__iot_setup__' : function(cb) {
+    '__iot_setup__': function(cb) {
         // value of 'index' from last run downloaded from the cloud
         var lastIndex = this.toCloud.get('index');
         this.state.index = (lastIndex ? lastIndex : 0);
         cb(null);
     },
 
-    '__iot_loop__' : function(cb) {
+    '__iot_loop__': function(cb) {
         this.$.log && this.$.log.debug('Time offset ' + this.$.cloud.cli
                                        .getEstimatedTimeOffset());
         this.$.log && this.$.log.debug(JSON.stringify(this
@@ -37,14 +37,14 @@ exports.methods = {
         this.toCloud.set('in', this.$.gpio.readAll());
 
         this.toCloud.set('index', this.state.index);
-        this.state.index = this.state.index  + 1;
+        this.state.index = this.state.index + 1;
         var now = (new Date()).getTime();
         this.$.log && this.$.log.debug(now + ' loop:' + this.state.index);
 
         cb(null);
     },
 
-    'setPin' : function(pin, value, cb) {
+    'setPin': function(pin, value, cb) {
         var now = (new Date()).getTime();
         this.$.log && this.$.log.debug(now + ' setPin:' + pin + ' value:' +
                                        value);
@@ -54,7 +54,7 @@ exports.methods = {
         cb(null);
     },
 
-    'haltAndRestart' : function(afterSec, cb) {
+    'haltAndRestart': function(afterSec, cb) {
         this.$.nap.haltAndRestart(afterSec);
         cb(null);
     }
