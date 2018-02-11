@@ -18,14 +18,14 @@ limitations under the License.
 var caf_iot = require('caf_iot');
 
 exports.methods = {
-    '__iot_setup__': function(cb) {
+    async __iot_setup__() {
         // value of 'index' from last run downloaded from the cloud
         var lastIndex = this.toCloud.get('index');
         this.state.index = (lastIndex ? lastIndex : 0);
-        cb(null);
+        return [];
     },
 
-    '__iot_loop__': function(cb) {
+    async __iot_loop__() {
         this.$.log && this.$.log.debug('Time offset ' + this.$.cloud.cli
                                        .getEstimatedTimeOffset());
         this.$.log && this.$.log.debug(JSON.stringify(this
@@ -41,22 +41,22 @@ exports.methods = {
         var now = (new Date()).getTime();
         this.$.log && this.$.log.debug(now + ' loop:' + this.state.index);
 
-        cb(null);
+        return [];
     },
 
-    'setPin': function(pin, value, cb) {
+    async setPin(pin, value) {
         var now = (new Date()).getTime();
         this.$.log && this.$.log.debug(now + ' setPin:' + pin + ' value:' +
                                        value);
         var pins = {};
         pins[pin] = value;
         this.$.gpio.writeMany(pins);
-        cb(null);
+        return [];
     },
 
-    'haltAndRestart': function(afterSec, cb) {
+    async haltAndRestart(afterSec) {
         this.$.nap.haltAndRestart(afterSec);
-        cb(null);
+        return [];
     }
 };
 

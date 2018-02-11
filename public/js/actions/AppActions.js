@@ -45,17 +45,17 @@ var AppActions = {
     initServer: function(initialData) {
         updateF(initialData);
     },
-    init: function(cb) {
-        AppSession.hello(AppSession.getCacheKey(),
-                         caf_cli.extractTokenFromURL(window.location.href),
-                         function(err, data) {
-                             if (err) {
-                                 errorF(err);
-                             } else {
-                                 updateF(data);
-                             }
-                             cb(err, data);
-                         });
+    async init() {
+        try {
+            var token = caf_cli.extractTokenFromURL(window.location.href);
+            var data = await AppSession.hello(AppSession.getCacheKey(), token)
+                    .getPromise();
+            updateF(data);
+            return [null, data];
+        } catch (err) {
+            errorF(err);
+            return [err];
+        }
     },
     setLocalState: function(data) {
         updateF(data);
@@ -71,19 +71,17 @@ var AppActions = {
 ['changePinMode', 'changePinValue', 'changeMaxSleep', 'blink', 'deletePin',
  'getState', 'resetBlinks']
     .forEach(function(x) {
-        AppActions[x] = function() {
+        AppActions[x] = async function() {
             var args = Array.prototype.slice.call(arguments);
-            args.push(function(err, data) {
-                if (err) {
-                    errorF(err);
-                } else {
-                    updateF(data);
-                }
-            });
-            AppSession[x].apply(AppSession, args);
+            try {
+                var data = await AppSession[x].apply(AppSession, args)
+                        .getPromise();
+                updateF(data);
+            } catch (err) {
+                errorF(err);
+            }
         };
     });
-
 
 AppSession.onmessage = function(msg) {
     console.log('message:' + JSON.stringify(msg));

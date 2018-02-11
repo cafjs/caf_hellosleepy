@@ -7,16 +7,18 @@ var AppActions = require('./actions/AppActions');
 
 var cE = React.createElement;
 
-AppSession.onopen = function() {
+AppSession.onopen = async function() {
     console.log('open session');
-    AppActions.init(function(err) {
+    var result = await AppActions.init();
+    var err = result[0];
+    if (err) {
         console.log('Cannot connect:' + err);
-        // render error or real data
+    } else {
         ReactDOM.render(
             cE(MyApp, null),
             document.getElementById('content')
         );
-    });
+    }
 };
 
 
