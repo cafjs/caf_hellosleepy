@@ -1,10 +1,10 @@
-# CAF (Cloud Assistant Framework)
+# Caf.js
 
 Co-design permanent, active, stateful, reliable cloud proxies with your web app.
 
-See http://www.cafjs.com
+See https://www.cafjs.com
 
-## CAF IoT example of power management with impersonation.
+## IoT Example of Power Management with Impersonation.
 
 Basic example combining a CA, an IoT device application, and a React+Flux
 front end.
